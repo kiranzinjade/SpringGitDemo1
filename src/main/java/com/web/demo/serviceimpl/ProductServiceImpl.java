@@ -1,6 +1,7 @@
 package com.web.demo.serviceimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,31 @@ private	ProductRepository productRepository;
 		
 		
 		return productRepository.save(product);
+	}
+
+	@Override
+	public void updateProduct(long id,Product product) {
+		
+		List<Product> list=productRepository.findAll();
+		
+		List<Product> lpr=list.stream().map(b->
+		{
+			if(b.getId()==id)
+			{
+				b.setId(id);
+				b.setSku(product.getSku());
+				b.setName(product.getName());
+			}
+			return b;
+		}).collect(Collectors.toList());
+		
+		
+	}
+
+	@Override
+	public List<Product> getAllProducts() {
+		
+		return productRepository.findAll();
 	}
 
 }
