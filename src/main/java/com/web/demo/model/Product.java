@@ -29,7 +29,7 @@ public class Product {
 	private String sku;
 	private String name;
 	private String description;
-	private boolean active;
+	private Boolean active;
 	private String imageUrl;
 	@CreationTimestamp
 	private LocalDateTime datecreate;

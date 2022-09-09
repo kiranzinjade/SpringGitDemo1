@@ -31,19 +31,25 @@ private	ProductRepository productRepository;
 		return productRepository.save(product);
 	}
 
+	
+	
 	@Override
 	public void updateProduct(long id,Product product) {
-		
 		List<Product> list=productRepository.findAll();
 		
-		List<Product> lpr=list.stream().map(b->
-		{
+		list=list.stream().map(b->{
 			if(b.getId()==id)
 			{
-				b.setId(id);
+				
 				b.setSku(product.getSku());
 				b.setName(product.getName());
+				b.setDescription(product.getDescription());
+				b.setActive(product.getActive());
+				b.setImageUrl(product.getImageUrl());
+				b.setDatecreate(product.getDatecreate());
+				b.setDateupdated(product.getDateupdated());
 			}
+			
 			return b;
 		}).collect(Collectors.toList());
 		

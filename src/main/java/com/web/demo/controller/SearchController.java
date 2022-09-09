@@ -43,10 +43,11 @@ public class SearchController {
 	}
 	
 	@PutMapping("/updateproduct/{id}")
-	public void updateProduct(@PathVariable("id") long id,@RequestBody Product product)
+	public Product updateProduct(@PathVariable("id") long id,@RequestBody Product product)
 	{
 		
-		productService.updateProduct(id,product);
+		       productService.updateProduct(id,product);
+		       return product;
 	}
 
 }
